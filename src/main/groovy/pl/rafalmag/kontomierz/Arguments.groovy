@@ -3,7 +3,7 @@ package pl.rafalmag.kontomierz
 import com.lexicalscope.jewel.cli.Option
 
 interface Arguments {
-    @Option(longName = "host", shortName = "p", defaultValue = "localhost")
+    @Option(longName = "host", defaultValue = "localhost")
     String getHost()
 
     @Option(longName = "port", shortName = "p", defaultValue = "27017")
@@ -16,7 +16,7 @@ interface Arguments {
     @Option(longName = "database", shortName = "d")
     String getDataBaseName()
 
-    @Option(longName = "drop", defaultValue = "false")
+    @Option(longName = "drop")
     boolean getDrop()
 
     @Option(helpRequest = true)

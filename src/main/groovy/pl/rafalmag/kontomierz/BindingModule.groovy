@@ -31,6 +31,14 @@ class BindingModule extends AbstractModule {
         Multibinder<ApiMapping> apiMappings = Multibinder.newSetBinder(binder(), ApiMapping.class)
         apiMappings.addBinding().to(UserAccountsApiMapping.class)
         apiMappings.addBinding().to(MoneyTransactionApiMapping.class)
+        // TODO categories deposit
+        // TODO categories withdrawal
+        // TODO tags
+        // TODO budgets
+        // TODO scheduled_transactions
+        // TODO schedules
+        // TODO wealth_points
+        // TODO currencies
 
     }
 }
