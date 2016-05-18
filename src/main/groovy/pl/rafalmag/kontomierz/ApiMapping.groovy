@@ -6,4 +6,5 @@ import groovy.transform.Immutable
 class ApiMapping {
     String collectionName
     String urlPath
+    String objectName
 }

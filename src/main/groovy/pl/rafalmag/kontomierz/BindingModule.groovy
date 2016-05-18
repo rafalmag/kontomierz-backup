@@ -22,7 +22,7 @@ class BindingModule extends AbstractModule {
         bind(String.class).annotatedWith(Names.named("apiKey")).toInstance(arguments.getApiKey())
         bind(RESTClient.class).toInstance(new RESTClient(BASE_URL));
         bind(new TypeLiteral<List<ApiMapping>>() {}).toInstance(ImmutableList.of(
-                new ApiMapping("user_accounts", "/k4/user_accounts.json")))
+                new ApiMapping("user_accounts", "/k4/user_accounts.json", "user_account")))
         def client = new MongoClient(arguments.getHost(), arguments.getPort());
         bind(MongoClient.class).toInstance(client);
         bind(MongoDatabase.class).toInstance(client.getDatabase(arguments.getDataBaseName()));
