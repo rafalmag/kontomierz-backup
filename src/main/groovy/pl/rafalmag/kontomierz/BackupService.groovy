@@ -1,6 +1,7 @@
 package pl.rafalmag.kontomierz
 
 import com.mongodb.MongoBulkWriteException
+import com.mongodb.client.MongoDatabase
 import groovy.util.logging.Slf4j
 import pl.rafalmag.kontomierz.apimappings.ApiMapping
 
@@ -17,7 +18,17 @@ class BackupService {
     @Inject
     Set<ApiMapping> apiMappings;
 
+    @Inject
+    Arguments arguments;
+
+    @Inject
+    MongoDatabase database;
+
     public backup() {
+        if(arguments.drop) {
+            database.drop()
+        }
+
         apiMappings.each {
             List<Map> json = it.getImporter().doImport(it)
             try {

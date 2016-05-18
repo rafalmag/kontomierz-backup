@@ -16,6 +16,9 @@ interface Arguments {
     @Option(longName = "database", shortName = "d")
     String getDataBaseName()
 
+    @Option(longName = "drop", defaultValue = "false")
+    boolean getDrop()
+
     @Option(helpRequest = true)
     boolean getHelp()
 }
