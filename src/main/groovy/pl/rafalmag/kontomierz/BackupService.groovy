@@ -1,25 +1,30 @@
 package pl.rafalmag.kontomierz
 
+import com.mongodb.MongoBulkWriteException
+import groovy.util.logging.Slf4j
+import pl.rafalmag.kontomierz.apimappings.ApiMapping
+
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@Slf4j
 @Singleton
 class BackupService {
-
-    @Inject
-    Importer importer;
 
     @Inject
     Exporter exporter;
 
     @Inject
-    List<ApiMapping> apiMapping;
+    Set<ApiMapping> apiMappings;
 
     public backup() {
-        apiMapping.each {
-            List<Map> json = importer.doImport(it)
-            exporter.export(it, json)
+        apiMappings.each {
+            List<Map> json = it.getImporter().doImport(it)
+            try {
+                exporter.export(it, json)
+            } catch (MongoBulkWriteException e) {
+                log.error("Could not save imported $it.collectionName, because of $e.message", e)
+            }
         }
-
     }
 }
