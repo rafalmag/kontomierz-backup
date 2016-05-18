@@ -15,8 +15,7 @@ class Main {
     static Arguments getArguments(String[] args) {
         try {
             CliFactory.parseArguments(Arguments, args);
-        }
-        catch (ArgumentValidationException e) {
+        } catch (ArgumentValidationException e) {
             // TODO usage and help
             println(e.getMessage())
             System.exit(-1);
