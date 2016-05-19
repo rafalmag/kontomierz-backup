@@ -31,7 +31,7 @@ class BindingModule extends AbstractModule {
         apiMappings.addBinding().to(MoneyTransactionApiMapping.class)
         apiMappings.addBinding().to(DepositCategoriesApiMapping.class)
         apiMappings.addBinding().to(WithdrawalCategoriesApiMapping.class)
-        // TODO tags
+        apiMappings.addBinding().to(TagsApiMapping.class)
         // TODO budgets
         // TODO scheduled_transactions
         // TODO schedules

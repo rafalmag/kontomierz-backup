@@ -8,6 +8,6 @@ class UserAccountsApiMapping extends ApiMapping {
 
     @Inject
     UserAccountsApiMapping(Importer importer){
-        super("user_accounts", "/k4/user_accounts.json", "user_account", importer)
+        super("user_accounts", "/k4/user_accounts.json", "user_account", importer, "id")
     }
 }

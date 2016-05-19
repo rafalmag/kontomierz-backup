@@ -9,6 +9,6 @@ class MoneyTransactionApiMapping extends ApiMapping {
 
     @Inject
     MoneyTransactionApiMapping(MoneyTransactionImporter importer){
-        super("money_transactions", "/k4/money_transactions.json", "money_transaction", importer)
+        super("money_transactions", "/k4/money_transactions.json", "money_transaction", importer, "id")
     }
 }

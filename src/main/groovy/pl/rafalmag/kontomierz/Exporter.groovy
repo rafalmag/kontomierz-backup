@@ -20,7 +20,7 @@ class Exporter {
 
     public void export(ApiMapping apiMapping, List<Map> json) {
         MongoCollection collection = db.getCollection(apiMapping.getCollectionName())
-        collection.createIndex(BsonDocument.parse("{ \"id\": 1 }"), new IndexOptions().unique(true))
+        collection.createIndex(BsonDocument.parse("{ \"$apiMapping.id\": 1 }"), new IndexOptions().unique(true))
         List<Document> dbObjects = json.collect {
             log.debug("creating document for: {}", it)
             new Document(it)

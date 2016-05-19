@@ -8,6 +8,6 @@ class WithdrawalCategoriesApiMapping extends ApiMapping {
 
     @Inject
     WithdrawalCategoriesApiMapping(WithdrawalCategoriesImporter importer) {
-        super("categories_withdrawal", "/k4/categories.json", "categories", importer)
+        super("categories_withdrawal", "/k4/categories.json", "categories", importer, "id")
     }
 }

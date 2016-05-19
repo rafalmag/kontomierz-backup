@@ -8,6 +8,6 @@ class DepositCategoriesApiMapping extends ApiMapping {
 
     @Inject
     DepositCategoriesApiMapping(DepositCategoriesImporter importer) {
-        super("categories_deposit", "/k4/categories.json", "categories", importer)
+        super("categories_deposit", "/k4/categories.json", "categories", importer, "id")
     }
 }

@@ -9,4 +9,5 @@ class ApiMapping {
     String urlPath
     String objectName
     Importer importer
+    String id
 }
