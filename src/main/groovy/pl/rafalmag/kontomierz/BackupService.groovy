@@ -25,7 +25,7 @@ class BackupService {
     MongoDatabase database;
 
     public backup() {
-        if(arguments.drop) {
+        if (arguments.drop) {
             database.drop()
         }
 

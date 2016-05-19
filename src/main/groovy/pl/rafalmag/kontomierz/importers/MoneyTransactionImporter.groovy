@@ -27,7 +27,7 @@ class MoneyTransactionImporter extends Importer {
                 per_page: 100
         ]);
         assert response.status == 200
-        log.debug("Result for page $page: {}",response.getData())
+        log.debug("Received response for $apiMapping.collectionName page $page: {}", response.getData())
         def json = response.getData()
         json.collect { it.get(apiMapping.getObjectName()) }
     }

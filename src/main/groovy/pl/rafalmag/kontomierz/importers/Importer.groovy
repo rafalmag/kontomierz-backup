@@ -23,14 +23,11 @@ class Importer {
     }
 
     def getResponse(ApiMapping apiMapping) {
-        def response = restClient.get(path: apiMapping.urlPath, query: getQuery());
+        def response = restClient.get(path: apiMapping.urlPath, query: [api_key: apiKey]);
         assert response.status == 200
         def json = response.getData()
         log.debug("Received response for $apiMapping.collectionName: {}", json)
         json
     }
 
-    Map<String, String> getQuery() {
-        [api_key: apiKey]
-    }
 }

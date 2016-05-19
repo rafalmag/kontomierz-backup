@@ -22,10 +22,10 @@ class Exporter {
         MongoCollection collection = db.getCollection(apiMapping.getCollectionName())
         collection.createIndex(BsonDocument.parse("{ \"$apiMapping.id\": 1 }"), new IndexOptions().unique(true))
         List<Document> dbObjects = json.collect {
-            log.debug("creating document for: {}", it)
+            log.debug("$apiMapping.collectionName creating document for: {}", it)
             new Document(it)
         }
-        log.debug("dbobjects: {}", dbObjects)
+        log.debug("$apiMapping.collectionName documents to persist: {}", dbObjects)
         collection.insertMany(dbObjects);
     }
 }

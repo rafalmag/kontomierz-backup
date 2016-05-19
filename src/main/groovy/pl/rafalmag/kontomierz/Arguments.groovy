@@ -9,7 +9,7 @@ interface Arguments {
     @Option(longName = "port", shortName = "p", defaultValue = "27017")
     int getPort()
 
-    // api docs example
+    // from Kontomierz api docs example
     @Option(longName = "apiKey", shortName = "a", defaultValue = "e7cOI9zZTbprBddSHHnlniLsAvzBpfhqTIjeUid2be0fjb2REaWnudZqGSgxz1Lz")
     String getApiKey()
 

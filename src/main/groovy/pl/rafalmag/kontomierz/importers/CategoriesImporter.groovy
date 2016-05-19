@@ -20,8 +20,7 @@ class CategoriesImporter extends Importer {
                 in_wallet: true
         ]);
         assert response.status == 200
-        log.debug("CategoriesImporter response: {}", response.getData())
-        log.debug("CategoriesImporter response.get: {}", response.getData().get("category_groups"))
+        log.debug("Received response for $apiMapping.collectionName: {}", response.getData())
         response.getData().get("category_groups")
     }
 }
