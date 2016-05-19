@@ -1,4 +1,4 @@
-package pl.rafalmag.kontomierz
+package pl.rafalmag.kontomierz.importers
 
 import groovyx.net.http.RESTClient
 import pl.rafalmag.kontomierz.apimappings.ApiMapping
@@ -18,6 +18,7 @@ class Importer {
     public List<Map> doImport(ApiMapping apiMapping) {
         def response = restClient.get(path: apiMapping.urlPath, query: [api_key: apiKey]);
         assert response.status == 200
-        response.getData()
+        def json = response.getData()
+        json.collect { it.get(apiMapping.getObjectName()) }
     }
 }

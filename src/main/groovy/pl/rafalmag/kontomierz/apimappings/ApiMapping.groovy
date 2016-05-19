@@ -1,7 +1,7 @@
 package pl.rafalmag.kontomierz.apimappings
 
 import groovy.transform.Canonical
-import pl.rafalmag.kontomierz.Importer
+import pl.rafalmag.kontomierz.importers.Importer
 
 @Canonical
 class ApiMapping {

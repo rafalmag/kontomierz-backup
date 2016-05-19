@@ -6,9 +6,7 @@ import com.google.inject.name.Names
 import com.mongodb.MongoClient
 import com.mongodb.client.MongoDatabase
 import groovyx.net.http.RESTClient
-import pl.rafalmag.kontomierz.apimappings.ApiMapping
-import pl.rafalmag.kontomierz.apimappings.MoneyTransactionApiMapping
-import pl.rafalmag.kontomierz.apimappings.UserAccountsApiMapping
+import pl.rafalmag.kontomierz.apimappings.*
 
 class BindingModule extends AbstractModule {
     static final String BASE_URL = "https://kontomierz.pl/"
@@ -31,8 +29,8 @@ class BindingModule extends AbstractModule {
         Multibinder<ApiMapping> apiMappings = Multibinder.newSetBinder(binder(), ApiMapping.class)
         apiMappings.addBinding().to(UserAccountsApiMapping.class)
         apiMappings.addBinding().to(MoneyTransactionApiMapping.class)
-        // TODO categories deposit
-        // TODO categories withdrawal
+        apiMappings.addBinding().to(DepositCategoriesApiMapping.class)
+        apiMappings.addBinding().to(WithdrawalCategoriesApiMapping.class)
         // TODO tags
         // TODO budgets
         // TODO scheduled_transactions

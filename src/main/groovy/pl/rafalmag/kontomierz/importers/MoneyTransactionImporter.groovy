@@ -1,4 +1,4 @@
-package pl.rafalmag.kontomierz
+package pl.rafalmag.kontomierz.importers
 
 import groovy.util.logging.Slf4j
 import pl.rafalmag.kontomierz.apimappings.ApiMapping
@@ -28,6 +28,7 @@ class MoneyTransactionImporter extends Importer {
         ]);
         assert response.status == 200
         log.debug("Result for page $page: {}",response.getData())
-        response.getData()
+        def json = response.getData()
+        json.collect { it.get(apiMapping.getObjectName()) }
     }
 }

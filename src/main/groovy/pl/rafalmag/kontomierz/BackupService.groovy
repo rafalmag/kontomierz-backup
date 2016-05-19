@@ -30,6 +30,7 @@ class BackupService {
         }
 
         apiMappings.each {
+            log.info("Backing up $it.collectionName")
             List<Map> json = it.getImporter().doImport(it)
             try {
                 exporter.export(it, json)

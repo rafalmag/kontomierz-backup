@@ -1,6 +1,6 @@
 package pl.rafalmag.kontomierz.apimappings
 
-import pl.rafalmag.kontomierz.MoneyTransactionImporter
+import pl.rafalmag.kontomierz.importers.MoneyTransactionImporter
 
 import javax.inject.Inject
 

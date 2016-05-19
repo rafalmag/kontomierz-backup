@@ -1,8 +1,8 @@
 package pl.rafalmag.kontomierz.apimappings
 
-import pl.rafalmag.kontomierz.Importer;
+import pl.rafalmag.kontomierz.importers.Importer
 
-import javax.inject.Inject;
+import javax.inject.Inject
 
 class UserAccountsApiMapping extends ApiMapping {
 
