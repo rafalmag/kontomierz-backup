@@ -36,7 +36,7 @@ class BindingModule extends AbstractModule {
         // TODO scheduled_transactions
         // TODO schedules
         // TODO wealth_points
-        // TODO currencies
+        apiMappings.addBinding().to(CurrenciesApiMapping.class)
 
     }
 }
