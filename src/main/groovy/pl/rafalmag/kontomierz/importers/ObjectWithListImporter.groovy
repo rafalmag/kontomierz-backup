@@ -4,7 +4,7 @@ import groovy.util.logging.Slf4j
 import pl.rafalmag.kontomierz.apimappings.ApiMapping
 
 @Slf4j
-class TagsImporter extends Importer {
+class ObjectWithListImporter extends ListWithObjectsImporter {
 
     @Override
     public List<Map> doImport(ApiMapping apiMapping) {

@@ -1,13 +1,25 @@
 package pl.rafalmag.kontomierz.importers
 
 import groovy.util.logging.Slf4j
+import groovyx.net.http.RESTClient
 import pl.rafalmag.kontomierz.apimappings.ApiMapping
+
+import javax.inject.Inject
+import javax.inject.Named
 
 import static pl.rafalmag.kontomierz.Looper.loop
 
 @Slf4j
-class MoneyTransactionImporter extends Importer {
+class MoneyTransactionImporter implements Importer {
 
+    @Inject
+    RESTClient restClient;
+
+    @Named("apiKey")
+    @Inject
+    String apiKey;
+
+    @Override
     public List<Map> doImport(ApiMapping apiMapping) {
         int page = 1
         def result = []

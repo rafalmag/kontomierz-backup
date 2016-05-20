@@ -1,15 +1,9 @@
 package pl.rafalmag.kontomierz.importers
 
-import pl.rafalmag.kontomierz.apimappings.ApiMapping
+//TODO remove this class
+abstract class ScheduledTransactionsImporter extends ObjectWithListImporter {
 
-abstract class ScheduledTransactionsImporter extends Importer {
-
+    //TODO inject start_on
     public static final String START_ON = "01-01-2013"
-
-    public List<Map> doImport(ApiMapping apiMapping) {
-        def json = getResponse(apiMapping)
-        json.get(apiMapping.getObjectName())
-    }
-
 
 }

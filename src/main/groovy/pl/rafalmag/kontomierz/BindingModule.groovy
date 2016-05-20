@@ -8,9 +8,7 @@ import com.mongodb.MongoClient
 import com.mongodb.client.MongoDatabase
 import groovyx.net.http.RESTClient
 import pl.rafalmag.kontomierz.apimappings.*
-import pl.rafalmag.kontomierz.importers.Importer
-import pl.rafalmag.kontomierz.importers.PaidScheduledTransactionsImporter
-import pl.rafalmag.kontomierz.importers.UnpaidScheduledTransactionsImporter
+import pl.rafalmag.kontomierz.importers.*
 
 class BindingModule extends AbstractModule {
     static final String BASE_URL = "https://kontomierz.pl/"
@@ -33,10 +31,10 @@ class BindingModule extends AbstractModule {
         install(new PrivateModule() {
             @Override
             protected void configure() {
-                Multibinder<Importer> scheduledTransactionsImporters = Multibinder.newSetBinder(binder(), Importer.class);
+                Multibinder<ListWithObjectsImporter> scheduledTransactionsImporters = Multibinder.newSetBinder(binder(), ListWithObjectsImporter.class);
                 scheduledTransactionsImporters.addBinding().to(PaidScheduledTransactionsImporter.class);
                 scheduledTransactionsImporters.addBinding().to(UnpaidScheduledTransactionsImporter.class);
-                bind(MergingImporter.class).annotatedWith(Names.named("BothScheduledTransactions")).to(MergingImporter.class)
+                bind(Importer.class).annotatedWith(Names.named("BothScheduledTransactions")).to(MergingImporter.class)
                 bind(ScheduledTransactionsApiMapping.class)
                 expose(ScheduledTransactionsApiMapping.class)
             }

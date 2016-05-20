@@ -1,12 +1,23 @@
 package pl.rafalmag.kontomierz.importers
 
 import groovy.util.logging.Slf4j
+import groovyx.net.http.RESTClient
 import pl.rafalmag.kontomierz.apimappings.ApiMapping
 
-@Slf4j
-class CategoriesImporter extends Importer {
+import javax.inject.Inject
+import javax.inject.Named
 
-    String direction = ""
+@Slf4j
+class CategoriesImporter implements Importer {
+
+    @Inject
+    RESTClient restClient;
+
+    @Named("apiKey")
+    @Inject
+    String apiKey;
+
+    final String direction
 
     CategoriesImporter(String direction) {
         this.direction = direction
