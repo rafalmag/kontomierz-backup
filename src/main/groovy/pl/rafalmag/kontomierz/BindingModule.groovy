@@ -11,6 +11,7 @@ import pl.rafalmag.kontomierz.apimappings.*
 import pl.rafalmag.kontomierz.importers.*
 
 class BindingModule extends AbstractModule {
+
     static final String BASE_URL = "https://kontomierz.pl/"
 
     final Arguments arguments
@@ -22,7 +23,7 @@ class BindingModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(Arguments.class).toInstance(arguments)
-        bind(String.class).annotatedWith(Names.named("apiKey")).toInstance(arguments.getApiKey())
+        bind(String.class).annotatedWith(ApiKey.class).toInstance(arguments.getApiKey())
         bind(RESTClient.class).toInstance(new RESTClient(BASE_URL))
         def client = new MongoClient(arguments.getHost(), arguments.getPort())
         bind(MongoClient.class).toInstance(client)

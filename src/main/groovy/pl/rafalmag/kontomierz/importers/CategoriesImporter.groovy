@@ -2,10 +2,10 @@ package pl.rafalmag.kontomierz.importers
 
 import groovy.util.logging.Slf4j
 import groovyx.net.http.RESTClient
+import pl.rafalmag.kontomierz.ApiKey
 import pl.rafalmag.kontomierz.apimappings.ApiMapping
 
 import javax.inject.Inject
-import javax.inject.Named
 
 @Slf4j
 class CategoriesImporter implements Importer {
@@ -13,7 +13,7 @@ class CategoriesImporter implements Importer {
     @Inject
     RESTClient restClient;
 
-    @Named("apiKey")
+    @ApiKey
     @Inject
     String apiKey;
 
