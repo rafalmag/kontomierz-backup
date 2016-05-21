@@ -32,7 +32,8 @@ class BindingModule extends AbstractModule {
         install(new PrivateModule() {
             @Override
             protected void configure() {
-                Multibinder<ListWithObjectsImporter> scheduledTransactionsImporters = Multibinder.newSetBinder(binder(), ListWithObjectsImporter.class);
+                Multibinder<ListWithObjectsImporter> scheduledTransactionsImporters = Multibinder.newSetBinder(
+                        binder(), ListWithObjectsImporter.class);
                 scheduledTransactionsImporters.addBinding().to(PaidScheduledTransactionsImporter.class);
                 scheduledTransactionsImporters.addBinding().to(UnpaidScheduledTransactionsImporter.class);
                 bind(Importer.class).annotatedWith(Names.named("BothScheduledTransactions")).to(MergingImporter.class)
