@@ -16,16 +16,16 @@ import javax.inject.Singleton
 class Exporter {
 
     @Inject
-    MongoDatabase db;
+    MongoDatabase db
 
     public void export(ApiMapping apiMapping, List<Map> json) {
         MongoCollection collection = db.getCollection(apiMapping.getCollectionName())
         collection.createIndex(BsonDocument.parse("{ \"$apiMapping.id\": 1 }"), new IndexOptions().unique(true))
-        List<Document> dbObjects = json.collect {
+        List<Document> documents = json.collect {
             log.debug("$apiMapping.collectionName creating document for: {}", it)
             new Document(it)
         }
-        log.debug("$apiMapping.collectionName documents to persist: {}", dbObjects)
-        collection.insertMany(dbObjects);
+        log.debug("$apiMapping.collectionName documents to persist: {}", documents)
+        collection.insertMany(documents)
     }
 }

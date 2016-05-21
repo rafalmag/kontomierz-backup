@@ -8,7 +8,7 @@ class WealthPointsImporter extends ListWithObjectsImporter {
 
     @Inject
     @ImportFrom
-    String importFrom;
+    String importFrom
 
     @Override
     Map<String, String> getQuery() {

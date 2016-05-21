@@ -11,11 +11,11 @@ import javax.inject.Inject
 class ListWithObjectsImporter implements Importer {
 
     @Inject
-    RESTClient restClient;
+    RESTClient restClient
 
     @ApiKey
     @Inject
-    String apiKey;
+    String apiKey
 
     @Override
     public List<Map> doImport(ApiMapping apiMapping) {
@@ -24,7 +24,7 @@ class ListWithObjectsImporter implements Importer {
     }
 
     def getResponse(ApiMapping apiMapping) {
-        def response = restClient.get(path: apiMapping.urlPath, query: getQuery());
+        def response = restClient.get(path: apiMapping.urlPath, query: getQuery())
         assert response.status == 200
         def json = response.getData()
         log.debug("Received response for $apiMapping.collectionName: {}", json)

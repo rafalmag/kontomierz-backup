@@ -9,6 +9,6 @@ abstract class ScheduledTransactionsImporter extends ObjectWithListImporter {
 
     @Inject
     @ImportFrom
-    String importFrom;
+    String importFrom
 
 }

@@ -11,11 +11,11 @@ import javax.inject.Inject
 class CategoriesImporter implements Importer {
 
     @Inject
-    RESTClient restClient;
+    RESTClient restClient
 
     @ApiKey
     @Inject
-    String apiKey;
+    String apiKey
 
     final String direction
 
@@ -29,7 +29,7 @@ class CategoriesImporter implements Importer {
                 api_key  : apiKey,
                 direction: direction,
                 in_wallet: true
-        ]);
+        ])
         assert response.status == 200
         log.debug("Received response for $apiMapping.collectionName: {}", response.getData())
         response.getData().get("category_groups")

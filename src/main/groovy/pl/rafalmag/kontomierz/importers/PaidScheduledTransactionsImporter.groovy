@@ -1,4 +1,4 @@
-package pl.rafalmag.kontomierz.importers;
+package pl.rafalmag.kontomierz.importers
 
 class PaidScheduledTransactionsImporter extends ScheduledTransactionsImporter {
 

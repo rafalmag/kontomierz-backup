@@ -14,15 +14,15 @@ import static pl.rafalmag.kontomierz.Looper.loop
 class MoneyTransactionImporter implements Importer {
 
     @Inject
-    RESTClient restClient;
+    RESTClient restClient
 
     @ApiKey
     @Inject
-    String apiKey;
+    String apiKey
 
     @ImportFrom
     @Inject
-    String importFrom;
+    String importFrom
 
     @Override
     public List<Map> doImport(ApiMapping apiMapping) {
@@ -44,7 +44,7 @@ class MoneyTransactionImporter implements Importer {
                 per_page: 100,
                 start_on: importFrom
 
-        ]);
+        ])
         assert response.status == 200
         log.debug("Received response for $apiMapping.collectionName page $page: {}", response.getData())
         def json = response.getData()

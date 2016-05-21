@@ -9,16 +9,16 @@ class Main {
 
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new BindingModule(getArguments(args)))
-        injector.getInstance(BackupService.class).backup()
+        injector.getInstance(BackupService).backup()
     }
 
     static Arguments getArguments(String[] args) {
         try {
-            CliFactory.parseArguments(Arguments, args);
+            CliFactory.parseArguments(Arguments, args)
         } catch (ArgumentValidationException e) {
             // TODO usage and help
             println(e.getMessage())
-            System.exit(-1);
+            System.exit(-1)
             throw new IllegalStateException("after system exit", e)
         }
     }

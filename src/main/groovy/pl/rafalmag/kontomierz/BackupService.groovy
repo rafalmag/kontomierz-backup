@@ -13,16 +13,16 @@ import javax.inject.Singleton
 class BackupService {
 
     @Inject
-    Exporter exporter;
+    Exporter exporter
 
     @Inject
-    Set<ApiMapping> apiMappings;
+    Set<ApiMapping> apiMappings
 
     @Inject
-    Arguments arguments;
+    Arguments arguments
 
     @Inject
-    MongoDatabase database;
+    MongoDatabase database
 
     public backup() {
         if (arguments.drop) {

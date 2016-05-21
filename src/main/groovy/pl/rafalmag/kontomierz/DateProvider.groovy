@@ -10,7 +10,7 @@ class DateProvider implements Provider<List<String>> {
 
     @ImportFrom
     @Inject
-    String importFrom;
+    String importFrom
 
     @Override
     List<String> get() {
