@@ -2,12 +2,15 @@ package pl.rafalmag.kontomierz
 
 import com.google.inject.AbstractModule
 import com.google.inject.PrivateModule
+import com.google.inject.TypeLiteral
 import com.google.inject.multibindings.Multibinder
 import com.google.inject.name.Names
 import com.mongodb.MongoClient
 import com.mongodb.client.MongoDatabase
 import groovyx.net.http.RESTClient
-import pl.rafalmag.kontomierz.apimappings.*
+import pl.rafalmag.kontomierz.apimappings.ApiMapping
+import pl.rafalmag.kontomierz.apimappings.BudgetsApiMapping
+import pl.rafalmag.kontomierz.apimappings.ScheduledTransactionsApiMapping
 import pl.rafalmag.kontomierz.importers.*
 
 class BindingModule extends AbstractModule {
@@ -22,38 +25,40 @@ class BindingModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(Arguments.class).toInstance(arguments)
-        bind(String.class).annotatedWith(ApiKey.class).toInstance(arguments.getApiKey())
-        bind(String.class).annotatedWith(ImportFrom.class).toInstance(arguments.getImportFrom())
-        bind(RESTClient.class).toInstance(new RESTClient(BASE_URL))
+        bind(Arguments).toInstance(arguments)
+        bind(String).annotatedWith(ApiKey).toInstance(arguments.getApiKey())
+        bind(String).annotatedWith(ImportFrom).toInstance(arguments.getImportFrom())
+        bind(RESTClient).toInstance(new RESTClient(BASE_URL))
         def client = new MongoClient(arguments.getHost(), arguments.getPort())
-        bind(MongoClient.class).toInstance(client)
-        bind(MongoDatabase.class).toInstance(client.getDatabase(arguments.getDataBaseName()))
+        bind(MongoClient).toInstance(client)
+        bind(MongoDatabase).toInstance(client.getDatabase(arguments.getDataBaseName()))
+
+        bind(new TypeLiteral<List<String>>() {}).annotatedWith(Dates).toProvider(DateProvider)
 
         install(new PrivateModule() {
             @Override
             protected void configure() {
                 Multibinder<ListWithObjectsImporter> scheduledTransactionsImporters = Multibinder.newSetBinder(
-                        binder(), ListWithObjectsImporter.class);
-                scheduledTransactionsImporters.addBinding().to(PaidScheduledTransactionsImporter.class);
-                scheduledTransactionsImporters.addBinding().to(UnpaidScheduledTransactionsImporter.class);
-                bind(Importer.class).annotatedWith(Names.named("BothScheduledTransactions")).to(MergingImporter.class)
-                bind(ScheduledTransactionsApiMapping.class)
-                expose(ScheduledTransactionsApiMapping.class)
+                        binder(), ListWithObjectsImporter);
+                scheduledTransactionsImporters.addBinding().to(PaidScheduledTransactionsImporter);
+                scheduledTransactionsImporters.addBinding().to(UnpaidScheduledTransactionsImporter);
+                bind(Importer).annotatedWith(Names.named("BothScheduledTransactions")).to(MergingImporter)
+                bind(ScheduledTransactionsApiMapping)
+                expose(ScheduledTransactionsApiMapping)
             }
         });
 
-        Multibinder<ApiMapping> apiMappings = Multibinder.newSetBinder(binder(), ApiMapping.class)
-        apiMappings.addBinding().to(UserAccountsApiMapping.class)
-        apiMappings.addBinding().to(MoneyTransactionApiMapping.class)
-        apiMappings.addBinding().to(DepositCategoriesApiMapping.class)
-        apiMappings.addBinding().to(WithdrawalCategoriesApiMapping.class)
-        apiMappings.addBinding().to(TagsApiMapping.class)
-        // TODO budgets
+        Multibinder<ApiMapping> apiMappings = Multibinder.newSetBinder(binder(), ApiMapping)
+//        apiMappings.addBinding().to(UserAccountsApiMapping)
+//        apiMappings.addBinding().to(MoneyTransactionApiMapping)
+//        apiMappings.addBinding().to(DepositCategoriesApiMapping)
+//        apiMappings.addBinding().to(WithdrawalCategoriesApiMapping)
+//        apiMappings.addBinding().to(TagsApiMapping)
+        apiMappings.addBinding().to(BudgetsApiMapping)
         // TODO schedules
-        apiMappings.addBinding().to(ScheduledTransactionsApiMapping.class)
-        apiMappings.addBinding().to(WealthPointsApiMapping.class)
-        apiMappings.addBinding().to(CurrenciesApiMapping.class)
+//        apiMappings.addBinding().to(ScheduledTransactionsApiMapping)
+//        apiMappings.addBinding().to(WealthPointsApiMapping)
+//        apiMappings.addBinding().to(CurrenciesApiMapping)
 
     }
 }

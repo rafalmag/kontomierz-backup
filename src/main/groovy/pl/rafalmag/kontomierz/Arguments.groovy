@@ -10,7 +10,9 @@ interface Arguments {
     int getPort()
 
     // from Kontomierz api docs example
-    @Option(longName = "apiKey", shortName = "a", defaultValue = "e7cOI9zZTbprBddSHHnlniLsAvzBpfhqTIjeUid2be0fjb2REaWnudZqGSgxz1Lz", description = "Kontomierz api key")
+    @Option(longName = "apiKey", shortName = "a",
+            defaultValue = "e7cOI9zZTbprBddSHHnlniLsAvzBpfhqTIjeUid2be0fjb2REaWnudZqGSgxz1Lz",
+            description = "Kontomierz api key")
     String getApiKey()
 
     @Option(longName = "database", shortName = "d", description = "database name")
@@ -22,6 +24,8 @@ interface Arguments {
     @Option(helpRequest = true, description = "help")
     boolean getHelp()
 
-    @Option(longName = "importFrom", defaultValue = "01-01-2013", pattern = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20)\\d\\d\$", description = "Import start date. Format DD-MM-YYYY.")
+    @Option(longName = "importFrom", defaultValue = "01-01-2013",
+            pattern = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20)\\d\\d\$",
+            description = "Import start date. Format DD-MM-YYYY.")
     String getImportFrom()
 }
