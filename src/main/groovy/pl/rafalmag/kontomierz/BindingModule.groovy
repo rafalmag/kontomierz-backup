@@ -24,6 +24,7 @@ class BindingModule extends AbstractModule {
     protected void configure() {
         bind(Arguments.class).toInstance(arguments)
         bind(String.class).annotatedWith(ApiKey.class).toInstance(arguments.getApiKey())
+        bind(String.class).annotatedWith(ImportFrom.class).toInstance(arguments.getImportFrom())
         bind(RESTClient.class).toInstance(new RESTClient(BASE_URL))
         def client = new MongoClient(arguments.getHost(), arguments.getPort())
         bind(MongoClient.class).toInstance(client)

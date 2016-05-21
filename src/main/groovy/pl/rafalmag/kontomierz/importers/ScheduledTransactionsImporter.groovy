@@ -1,9 +1,14 @@
 package pl.rafalmag.kontomierz.importers
 
+import pl.rafalmag.kontomierz.ImportFrom
+
+import javax.inject.Inject
+
 //TODO remove this class
 abstract class ScheduledTransactionsImporter extends ObjectWithListImporter {
 
-    //TODO inject start_on
-    public static final String START_ON = "01-01-2013"
+    @Inject
+    @ImportFrom
+    String importFrom;
 
 }

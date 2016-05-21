@@ -4,7 +4,7 @@ class UnpaidScheduledTransactionsImporter extends ScheduledTransactionsImporter 
     @Override
     Map<String, String> getQuery() {
         [api_key            : apiKey,
-         start_on           : START_ON,
+         start_on           : importFrom,
          schedule_group_name: "unpaid"]
     }
 }
