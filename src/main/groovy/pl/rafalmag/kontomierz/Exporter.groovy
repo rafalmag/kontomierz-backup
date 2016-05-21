@@ -33,9 +33,9 @@ class Exporter {
             def result = collection.replaceOne(query, it, new UpdateOptions().upsert(true))
             boolean updated = result.getUpsertedId() == null
             if (updated) {
-                log.info("Updated existing document with id={}", it.get(apiMapping.id))
+                log.info("Updated existing document in $apiMapping.collectionName with id={}", it.get(apiMapping.id))
             } else {
-                log.debug("Inserted new document")
+                log.debug("Inserted new document into $apiMapping.collectionName")
             }
         }
     }
