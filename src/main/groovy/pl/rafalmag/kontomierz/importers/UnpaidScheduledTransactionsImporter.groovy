@@ -1,6 +1,14 @@
 package pl.rafalmag.kontomierz.importers
 
-class UnpaidScheduledTransactionsImporter extends ScheduledTransactionsImporter {
+import pl.rafalmag.kontomierz.ImportFrom
+
+import javax.inject.Inject
+
+class UnpaidScheduledTransactionsImporter extends ObjectWithListImporter {
+    @Inject
+    @ImportFrom
+    String importFrom
+
     @Override
     Map<String, String> getQuery() {
         [api_key            : apiKey,
